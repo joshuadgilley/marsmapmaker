@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import CheckboxExample from './CheckBox'
 import DropDown from './DropDown'
 import { selectedField } from '../actions'
-import FontAwesome from '../../node_modules/react-fontawesome';
+//import FontAwesome from '../../node_modules/react-fontawesome';
 
 class FieldCard extends React.Component {
 

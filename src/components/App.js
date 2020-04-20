@@ -16,7 +16,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         // THIS IS THE ONLY TIME WE DO DIRECT ASSIGNMENT TO STATE
-        this.state = { fieldNames: [], size: 0, fieldValues: [], data: [] }; // state object, contains properties relevant to component
+        this.state = { fieldNames: [], size: 0, fieldValues: [], data: [], moveOn: false }; // state object, contains properties relevant to component
     }
 
     fileCallback = (datafromFile) => {
@@ -25,7 +25,8 @@ class App extends React.Component {
             fieldNames:
                 parser(datafromFile.meta.fields, datafromFile.meta.fields.length),
             fieldValues:
-                datafromFile.data[0]
+                datafromFile.data[0],
+            moveOn: true
         })
     }
 
@@ -45,8 +46,8 @@ class App extends React.Component {
         //conditio
         return (
             <div>
-                <FileIn callbackFromParent={this.fileCallback} />
-                <CardList fields={this.state.fieldNames} fieldVal={this.state.fieldValues} />
+                <FileIn callbackFromParent={this.fileCallback} />{this.state.moveOn ?
+                <CardList fields={this.state.fieldNames} fieldVal={this.state.fieldValues} /> : null}
             </div>
         )
 
