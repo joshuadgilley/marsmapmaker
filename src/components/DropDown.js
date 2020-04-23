@@ -1,7 +1,7 @@
 import React from "react";
 import "semantic-ui-react";
 import { connect } from "react-redux";
-import { selectedField } from "../actions";
+
 class DropDown extends React.Component {
     constructor(props) {
         super(props);
@@ -17,10 +17,8 @@ class DropDown extends React.Component {
     handleChange(e) {
         console.log(e.target.value);
     }
-    // dont need this method anymore
-    /*onClick = (index) => {
-      console.log(index);
-    };*/
+
+
     render() {
         let filter = (f) => {
             if (f.type === this.props.fieldType)
