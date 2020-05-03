@@ -3,11 +3,13 @@ import FieldCard from './FieldCard';
 import { connect } from 'react-redux';
 import './App.css';
 import './Toolbar';
-import Toolbar from './Toolbar';
+import DateFormat from './DateFormat';
+import ReactModal from 'react-modal';
 
 const CardList = (props) => {
 
     const [hide, setHide] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     let typeField = (f) => {
         let numbers = /^[0-9,/.]*$/;
@@ -28,12 +30,19 @@ const CardList = (props) => {
         );
     });
 
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     return (
 
         <div>
+            <DateFormat onClose={closeModal} appear={showModal}/>
+            {/* {showModal ? <ReactModal isOpen={showModal}>
+                <button onClick={() => setShowModal(false)}> close </button> </ReactModal>: null} */}
             <div class="three ui buttons">
                 <button class="ui toggle button" onClick={() => setHide(!hide)}>Toggle</button>
-                <button class="ui basic button">Format Date</button>
+                <button class="ui basic button" onClick={() => setShowModal(true)}>Format Date</button>
                 <button class="ui basic button">Help</button> 
             </div>
             <div className="ui-card">{fields}</div>
