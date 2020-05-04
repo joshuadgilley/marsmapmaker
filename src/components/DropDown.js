@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 class DropDown extends React.Component {
     constructor(props) {
         super(props);
+        this.handleChange = e => {
+            //use componentDidUpdate instead maybe
+            this.setState({selectedValue : e.target.value}, () => console.log(this.state.headerTitle + " " + "!" + this.state.selectedValue + "!"));
+            console.log(e.target.value);
+        }
         this.state = {
             list: this.props.list,
             currentChosen: null,
@@ -12,11 +17,10 @@ class DropDown extends React.Component {
             value: "select",
             selectedValue: "",
         };
+        
     }
     //e is the event being passed in from select
-    handleChange(e) {
-        console.log(e.target.value);
-    }
+    
 
 
     render() {

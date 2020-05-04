@@ -12,7 +12,7 @@ function fieldSelection(state = {}, action) {
             }
         default: // need this for default case
             return state
-    }
+        }
 }
 
 export default combineReducers({

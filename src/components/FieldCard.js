@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import CheckboxExample from './CheckBox'
 import DropDown from './DropDown'
 import { selectedField } from '../actions'
-//import FontAwesome from '../../node_modules/react-fontawesome';
+
 
 class FieldCard extends React.Component {
 
+    // type : identifies if object has a content of a number or a string
+    // isGreen: identifies if checked by user
+    // sesarOptions: an array to be passed to the dropbox
     state = {
         type: this.props.fieldType,
         isGreen: this.props.hasContent,
@@ -254,7 +257,7 @@ class FieldCard extends React.Component {
         ]
     }
 
-
+    // changes color if checkbox is clicked
     changeColor = (e) => {
         e.preventDefault();
         this.setState({ isGreen: !this.state.isGreen })
@@ -284,7 +287,8 @@ class FieldCard extends React.Component {
 
 
         });
-
+        
+        //allows for rendering of dropdown if checkbox is clicked
         const filterDrop = () => {
             if (this.state.isGreen === true)
                 return <div className="dropDown"><DropDown title={this.props.fieldTitle} value={this.props.fieldValue} fieldType={this.props.fieldType} list={this.state.sesarOptions} /> </div>
@@ -293,7 +297,7 @@ class FieldCard extends React.Component {
         }
 
         
-
+        //cuts off field values that are too long for display
         const lengthCheckedMapValue = () => {
             let value = this.props.fieldValue;
 
@@ -314,7 +318,6 @@ class FieldCard extends React.Component {
             <div class="ui label">
                 <div className={btnClass}>
                     <object className="fieldWidget">
-                        {/* <div className="checkBox" onClick={this.changeColor.bind(this)}> <CheckboxExample isChecked={this.state.isGreen} /> </div> */}
                         
                         <div dir="rtl" className="fieldTitle">{this.props.fieldTitle}</div>
                         <i class="fa fa-grip-lines-vertical"></i>
