@@ -677,8 +677,7 @@ export class DropDown extends React.Component {
       //gives unused One to One values
       if (
         !this.props.useOnce.includes(f.title) &&
-        !metaAddSesarTitles.includes(f.title) &&
-        f.title !== "user_code"
+        !isSesarTitlePresent(f.title, this.props.ent)
       ) {
         //console.log(f.title + ": Flag 5" + this.hasSesarValue()[1]);
         //console.log(this.props.useOnce);
