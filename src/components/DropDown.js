@@ -396,13 +396,17 @@ export class DropDown extends React.Component {
     }
 
     let objects = [
-      "field_name",
+      "size",
       "description",
       "sample_comment",
       "geological_age",
-      "size"
+      "field_name"
     ];
 
+    console.log(objects[4]);
+    console.log(this.props.ent[this.props.id].sesarTitle);
+    console.log(newValue);
+    console.log("---------------------");
     for (let i = 0; i < objects.length; i++) {
       if (
         objects[i] === this.props.ent[this.props.id].sesarTitle &&
