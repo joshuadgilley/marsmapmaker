@@ -23,7 +23,7 @@ import {
   setForcedOldToNew
 } from "../actions/";
 
-import { dropdownSet } from "../util/helper.js";
+import { dropdownSet, isSesarTitlePresent } from "../util/helper.js";
 //////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
@@ -396,13 +396,17 @@ export class DropDown extends React.Component {
     }
 
     let objects = [
-      "field_name",
+      "size",
       "description",
       "sample_comment",
       "geological_age",
-      "size"
+      "field_name"
     ];
 
+    console.log(objects[4]);
+    console.log(this.props.ent[this.props.id].sesarTitle);
+    console.log(newValue);
+    console.log("---------------------");
     for (let i = 0; i < objects.length; i++) {
       if (
         objects[i] === this.props.ent[this.props.id].sesarTitle &&
@@ -623,10 +627,9 @@ export class DropDown extends React.Component {
           </option>
         );
       }
-
+      let metaAddSesarTitles = ["sample_type", "elevation_unit", "material"];
       //if an added card only show the exclusive added sesartitle fields
       if (this.props.hasInit && this.props.fieldType === "added_card") {
-        let metaAddSesarTitles = ["sample_type", "elevation_unit", "material"];
         if (
           this.props.id !== 0 &&
           this.checkForMetaDataAdd(f.title) === false &&
@@ -648,11 +651,7 @@ export class DropDown extends React.Component {
           this.hasSesarValue()[1] === f.title &&
           metaAddSesarTitles.includes(f.title)
         ) {
-          return (
-            <option key={f.title} value={this.hasSesarValue()[1]} selected>
-              {this.hasSesarValue()[1]}
-            </option>
-          );
+          return null;
         } else return;
       }
 
@@ -680,9 +679,12 @@ export class DropDown extends React.Component {
         );
       }
       //gives unused One to One values
-      if (!this.props.useOnce.includes(f.title)) {
-        // console.log(f.title + ": Flag 5" + this.hasSesarValue()[1])
-
+      if (
+        !this.props.useOnce.includes(f.title) &&
+        !isSesarTitlePresent(f.title, this.props.ent)
+      ) {
+        //console.log(f.title + ": Flag 5" + this.hasSesarValue()[1]);
+        //console.log(this.props.useOnce);
         return (
           <option key={f.title} value={f.title}>
             {f.title}
@@ -701,13 +703,7 @@ export class DropDown extends React.Component {
         );
       }
       //this case should be unreachable, need time to test
-      else if (this.props.useOnce.indexOf(f.title) === this.props.id) {
-        return (
-          <option key={f.title} value={f.title}>
-            {f.title}
-          </option>
-        );
-      }
+      else return null;
     };
 
     // creates the dropdown, uses filter() to specify which items are included in dropdown

@@ -11,9 +11,8 @@ import { formatDate } from "../actions/";
 
 import mars from "../icons/planet.png";
 import { isSesarTitlePresent } from "../util/helper.js";
-//import { sum } from 'd3';
-//need to handle single value measurements and size unit mapping Size unit should always be 'cm'
-//
+const { license } = require("./license");
+
 class MapOutput extends React.Component {
   state = { functionIDs: [], orderedForcedFields: [] };
 
@@ -22,47 +21,27 @@ class MapOutput extends React.Component {
     let filtered = [];
     let reference = this.props.ent;
 
-    //alert(unfiltered.length + "   " + reference.length)
-
-    //  for (let i = 0; i < unfiltered.length; i++)
-    //  {alert("HEADER: " + unfiltered[i].header + "VALUE: " + unfiltered[i].value + "sesarTitle: " + unfiltered[i].sesar) }
-
     let checker = 0;
     for (let i = 0; i < reference.length; i++) {
       let count = 0;
 
       for (let j = 0; j < unfiltered.length; j++) {
-        //alert("UNFILTERED HEADER AND VALUE:" + unfiltered[j].header + " " + unfiltered[j].value)
-        //alert(unfiltered[j].value + "======" + reference[i].value)
-        //alert(unfiltered[j].sesar === reference[i].sesarTitle + "VALUES BEING CONSIDERED: " + unfiltered[j].sesar + " " + reference[i].sesarTitle + " " + unfiltered[j].value)
         if (unfiltered[j].sesar === reference[i].sesarTitle && count < 1) {
-          //if (j < 2 && i < 3)
-          //alert("CHECKING REFERENCE CONTENT " + j + " " + unfiltered[j].value + "  " + reference[i].value)
-          //alert("WHAT THE HELL AM I ADDING TO SIFTED: " + unfiltered[j].value)
           filtered.push(unfiltered[j]);
           checker++;
           count++;
         }
       }
     }
-
-    //  alert("filtered length: " + filtered.length)
     return filtered;
   };
 
+  //license information located in license.js
   apacheLicense = () => {
-    return (
-      "// Copyright [2020] [CIRDLES.org] Licensed under the\n" +
-      '// Apache License, Version 2.0 (the "License"); you may not use this\n' +
-      "// file except in compliance with the License. You may obtain a copy\n" +
-      "// of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless\n" +
-      "// required by applicable law or agreed to in writing, software distributed\n" +
-      '// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES\n' +
-      "// OR CONDITIONS OF ANY KIND, either express or implied. See the License\n" +
-      "// for the specific language governing permissions and limitations under the License.\n"
-    );
+    return license;
   };
 
+  //creates other dynamic metadata file information
   fileMetadataHeader = () => {
     let headerText =
       "//\n// **************************************************\n// Mapping file created with file(s)";
@@ -95,17 +74,17 @@ class MapOutput extends React.Component {
     return headerText + arrayContent;
   };
 
+  //creates each METADATA and METADATA_ADD functions
   forceEditFunction = () => {
     let id = 0;
     let functID = "";
 
-    //prepopulate sortedpersist with entries
+    //sortedPersistent are the METADATA and METADATA_ADD fields
     let sortedPersistent = this.props.persist;
-    console.log("this is sifted before filter " + sortedPersistent.length);
     sortedPersistent.sort((a, b) => (a.index > b.index ? 1 : -1));
-    console.log("this is sifted after sorted " + sortedPersistent.length);
+
     let sifted = this.filterSortedPersistent(sortedPersistent);
-    console.log("this is sifted after filter" + sifted.length);
+
     this.setState({ orderedForcedFields: sifted });
     for (let i = 0; i < sifted.length; i++) {
       functID =
@@ -133,9 +112,7 @@ class MapOutput extends React.Component {
       arr.push(appendValue);
       this.setState(state => ({ functionIDs: arr }));
     }
-    console.log(
-      "This is functionIDS in forceEdit: " + this.state.functionIDs.length
-    );
+
     return functID;
   };
 
@@ -435,10 +412,6 @@ class MapOutput extends React.Component {
           ",\n";
       }
     }
-    console.log(
-      "The length of functionIDs in logic function append:  " +
-        this.state.functionIDs.length
-    );
     return logicID;
   }
 
