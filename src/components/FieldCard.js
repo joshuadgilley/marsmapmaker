@@ -110,8 +110,11 @@ export class FieldCard extends React.Component {
 
     if (this.isMetaDataAddCard(this.props.id)) {
       let value;
-      value = this.props.ent[this.props.id].value;
-
+      if (this.props.id !== 0) {
+        value = this.props.ent[this.props.id].value;
+      } else {
+        value = "Required Field";
+      }
       currentComponent.setState({ updatedValue: value });
       return;
     }

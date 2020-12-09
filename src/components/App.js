@@ -98,7 +98,7 @@ export class App extends React.Component {
     for (let j = 0; j < numOfEmptyCards; j++) {
       newCardObj[j + "<METADATA_ADD>"] = "";
     }
-    console.log(newCardObj)
+    console.log(newCardObj);
     for (let i = 0; i < tValues.length; i++) {
       tValues[i] = { ...newCardObj, ...tValues[i] };
     }
@@ -138,22 +138,6 @@ export class App extends React.Component {
       forceValues: forceValues
     });
 
-    // When all for field data is loaded in properly and duplicates have been removed, set Init to True in store
-    // console.log(this.state.fieldNames.length)
-    // console.log(this.findDuplicates(newNames, newValues).length)
-    // console.log(totalSize)
-    // console.log(this.findDuplicates(newNames, newValues).length)
-    // console.log((this.state.fieldNames.length - this.findDuplicates(newNames, newValues).length) === (totalSize - this.findDuplicates(newNames, newValues).length))
-    // console.log(
-    //   "FIRST PART: " +
-    //     this.state.fieldNames.length -
-    //     this.findDuplicates(newNames, newValues).length
-    // );
-    // console.log(
-    //   "SECOND PART: " +
-    //     totalSize -
-    //     this.findDuplicates(newNames, newValues).length
-    // );
     if (
       this.state.fieldNames.length -
         this.findDuplicates(newNames, newValues).length ===
@@ -166,7 +150,6 @@ export class App extends React.Component {
   // Displays "Preview Pop Up function from cardList, when the Preview Map button is clicked"
   isOpenCallback = data => {
     let currentComponent = this;
-
     currentComponent.setState({
       isOpened: true,
       mapPreview: data.join("\n")
@@ -176,7 +159,11 @@ export class App extends React.Component {
   createSquiggleArray = () => {
     let arr = [];
     for (let i = 0; i < this.state.emptyCards.length; i++) {
-      arr.push("_");
+      let placeHolderValue = "_";
+      if (i === 0) {
+        placeHolderValue = "Required Field";
+      }
+      arr.push(placeHolderValue);
     }
     return arr;
   };
@@ -188,27 +175,21 @@ export class App extends React.Component {
       "mars-photo_hide": this.state.continue === true
     });
 
-    
-
     return (
-      <div style={{height: "100vh", position: "relative"}}>
-        <div className={readerClass} >
-        
-
-
-        <FileIn testID='FileIn' callbackFromParent={this.fileCallback} />
-
+      <div style={{ height: "100vh", position: "relative" }}>
+        <div className={readerClass}>
+          <FileIn testID="FileIn" callbackFromParent={this.fileCallback} />
+        </div>
         {this.state.isOpened ? (
           <Dialog
             isOpen={this.state.isOpened}
             onClose={e => this.setState({ isOpened: false })}
           >
-            {this.state.mapPreview.split("\n").map(i => {
-              return <div>{i}</div>;
+            {this.state.mapPreview.split("\n").map(mapping => {
+              return <div>{mapping}</div>;
             })}
           </Dialog>
         ) : null}
-        </div>
         {this.state.continue ? (
           <CardList
             tValLength={this.state.toggleValueLength}
@@ -216,12 +197,14 @@ export class App extends React.Component {
             callback={this.isOpenCallback}
             fields={[...this.state.emptyCards, ...this.state.fieldNames]}
             toggleVals={this.state.toggleValuesArr}
-            fieldVal={[...this.createSquiggleArray(), ...this.state.fieldValues]}
+            fieldVal={[
+              ...this.createSquiggleArray(),
+              ...this.state.fieldValues
+            ]}
             forceTitles={this.state.forceTitles}
             forceValues={this.state.forceValues}
           />
         ) : null}
-        
       </div>
     );
   }
