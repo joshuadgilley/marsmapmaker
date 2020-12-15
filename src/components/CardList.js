@@ -106,24 +106,6 @@ const CardList = props => {
     return sesarPassIn;
   };
 
-  // const createEmptyField = () => {
-  //     return (
-  //         <FieldCard
-  //             multiCount={props.multiCount}
-  //             addedNewField={(fieldsState[0] === "~~~" && newKey === 0) ? true : false}
-  //             jsFileValues={props.jsFileValues}
-  //             toggleInUse={props.usingToggle}
-  //             key={newKey}
-  //             hiding={hide}
-  //             fieldTitle={"~~~"}
-  //             id={newKey}
-  //             fieldType={"both"}
-  //             fieldValue={"~~~"}
-  //             hasContent={true}
-  //         />
-  //     )
-  // }
-
   const valueIsInJsMappingFile = field => {
     let valid = false;
     if (props.jsFileValues !== undefined) {
@@ -174,7 +156,6 @@ const CardList = props => {
           sesarTitle: sesarFind,
           oldValue: fieldValState[newKey],
           value: props.forceValues[forcedIndex],
-          // this used to be id
           header: "<METADATA>",
           isDate: false,
           isMeasurement: false,
@@ -191,7 +172,6 @@ const CardList = props => {
             sesarTitle: props.persist[newKey].sesar,
             oldValue: fieldValState[newKey],
             value: props.forceValues[forcedIndex],
-            // this used to be id
             header: "<METADATA_ADD>",
             isDate: false,
             isMeasurement: false,
@@ -204,7 +184,6 @@ const CardList = props => {
             sesarTitle: "",
             oldValue: fieldValState[newKey],
             value: props.forceValues[forcedIndex],
-            // this used to be id
             header: "<METADATA_ADD>",
             isDate: false,
             isMeasurement: false,
@@ -263,7 +242,6 @@ const CardList = props => {
           id={newKey}
           fieldType={helpers.typeField(newKey, lastMetaDataAdd)}
           fieldValue={Object.values(props.toggleArr[toggleIndex])[newKey]}
-          //fieldValue={props.fieldVal[newKey]}
           hasContent={
             props.fieldVal[newKey] !== "" || valueIsInJsMappingFile(field)
           }
@@ -346,11 +324,11 @@ const CardList = props => {
     ////////////////
     // POP-UP LOCAL VARIABLES
     let options = [
-      "field_name",
+      "size",
       "description",
       "sample_comment",
       "geological_age",
-      "size"
+      "field_name"
     ];
     let multiValueArr = [[], [], [], [], []];
     let mapPreviewArr = [];
@@ -367,7 +345,10 @@ const CardList = props => {
     /////////////////////////////////////////////////////////
     /////////// Display Preview of Multi-Value Selections
     for (i = 0; i < props.ent.length; i++) {
-      if (props.ent[i].sesarTitle !== "") {
+      if (
+        props.ent[i].sesarTitle !== "" &&
+        props.ent[i].sesarTitle !== "none"
+      ) {
         mapPreviewArr.push(
           String(props.ent[i].sesarTitle + ":" + props.ent[i].header)
         );

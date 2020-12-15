@@ -44,29 +44,6 @@ const reducer = (
     isOpen: false,
     hasInit: false,
     jsFile: undefined,
-    // singleMeasureArr: [],
-    // sizeOuterArray: [],
-    // sizeArray: [
-    //   // In the case of an ordered pair for SIZE, only the first two objects are used [0, 1, x]
-    //   // In the case of a single measurement for size, on the last object is used [x, x, 2]
-    //   {
-    //     pairHeader: "",
-    //     pairValue: "",
-    //     currentID: -1
-    //   },
-    //   {
-    //     pairHeader: "",
-    //     pairValue: "",
-    //     currentID: -1
-    //   },
-    //   {
-    //     pairHeader: "",
-    //     pairValue: "",
-    //     currentID: -1
-    //   }
-    // ],
-    // stringDateMeasure was used for stringDateMeasure dropdown, but depreciated
-    //stringDateMeasure: [],
     entries: [],
     useOnce: [],
     centuryChosen: false,
