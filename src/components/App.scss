@@ -1,344 +1,363 @@
 /*** MARS MAP MAKER CSS USING BEM (BLOCK, ELEMENT, MODIFIERS) ***/
 /*************************/
 
-$mars--border: rgb(46,14,8);
+$mars--border: rgb(46, 14, 8);
 
 * {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
-
-
-
 
 /* App.js */
 .mars-photo {
-    border: solid 10px $mars--border;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  position: "relative";
+  align-items: center;
+  justify-content: center;
+  background-image: url("../icons/mars.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
 }
 
-.mars-photo_hide{
-    display: none;
+.mars-photo_hide {
+  display: none;
 }
 
 /* CardList.js */
 .label {
-    width: 100%;
-    margin: 0px;
-    display: inline-block;
+  width: 100%;
+  margin: 0px;
+  display: inline-block;
 }
-.toggle__content{
-    width: 400px;
-    display: inline-block;
-    padding-left: 40px;
-    padding-bottom: 40px;
+
+.toolbar {
+  padding-top: 30px;
+}
+
+.toggle__content {
+
 }
 .toolbar__help {
-    font-size: 15px;
-    display: inline-block;
-    width: 15%;
-    padding-top: 3em;
-    padding: 10px;
-    margin: 10px;
-    margin-top: 5.4em;
-    float: right;
+
 }
 
+.toolbar__date {
+
+}
+
+.btn-margin {
+  margin: 10px;
+}
 
 .description__value {
-    color: rgb(99,99,102);
-    display: inline-block;
-    padding-left: 5px;
-    font-size: 18px;
-    width: 30%;
-    
+  position: relative;
+  color: rgb(99, 99, 102);
+  display: inline-block;
+  padding-left: 5px;
+  font-size: 17px;
+  width: 30%;
+  white-space: nowrap;
+}
+
+.description__value .hiddentext {
+  visibility: hidden;
+  max-width: 300px;
+  background-color: rgb(27, 14, 99);
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  z-index: 1;
+}
+
+.description__value:hover .hiddentext {
+  visibility: visible;
+  white-space: pre-wrap;
+}
+
+.description__mapped__content .hiddentext {
+  visibility: hidden;
+  max-width: 300px;
+  background-color: rgb(27, 14, 99);
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  z-index: 1;
+}
+
+.description__mapped__content:hover .hiddentext {
+  visibility: visible;
+  white-space: pre-wrap;
 }
 
 .marsOutput {
-    text-align: center; 
-    display: inline-block;
-    padding-bottom: 0px;
-    padding-top: 2%;
-    padding-left: 22em;
-    padding-right:2em;
-    margin: 0%;
-
+  text-align: center;
+  display: inline-block;
+  margin: 0%;
 }
 
 .mars--icon {
-    height: 160px;
-    width: 160px;
-    padding: 0%;
-    margin: 0%;
+  max-width: 200px;
+  width: 100%;
 }
 
 .mars--icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
-
 .preview {
-    height: 60px;
-    width:60px;
-    padding: 0%;
-    margin: 0%;
+  height: 60px;
+  width: 60px;
+  padding: 0%;
+  margin: 0%;
 }
 
 .preview:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .padRight {
-    padding-right: 103px; 
-    display: inline-block;
+  padding-right: 103px;
+  display: inline-block;
 }
 
 .greyListItem {
-    color: rgb(99,99,102)
+  color: rgb(99, 99, 102);
 }
 
-
 .description__title {
-    max-width: 0px;
-    display: inline-block;
-    font-size: 18px;
-    background-color: inherit;
-    padding-left: 225px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  max-width: 0px;
+  display: inline-block;
+  font-size: 17px;
+  background-color: inherit;
+  padding-left: 225px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  white-space: nowrap;
 }
 
 .field_wrapper {
-    border-style: solid;
-    margin: 1px;
+  border-style: solid;
+  margin: 1px;
 }
 
-
-
-
 .fileReaderUnloaded {
-    background-color: white;
-    opacity: 0.89;
-    border: solid 4px rgb(46,14,8);
-    position: fixed;
-    top: 35%;
-    left: 40%;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 25px;
+  max-width: 50%;
+  background-color: white;
+  opacity: 0.89;
+  border: solid 4px rgb(46, 14, 8);
+  max-height: 50%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  border-radius: 25px;
 }
 
 .csv__input {
-    padding-left: 17%;
-    display: inline-block;
+  padding-left: 20%;
+  display: inline-block;
 }
 
 .ui.search.dropdown:disabled {
-    color: lightslategray;
+  color: lightslategray;
 }
-
 
 .fileReaderLoaded {
-    display: none;
-    position: fixed;
-    top: 5%;
-    left: 40%;
-    padding-bottom: 100px;
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 40%;
+  padding-bottom: 100px;
 }
 
-.arrow{
-    font-size: 3em;
+.arrow {
+  font-size: 3em;
 }
 
-.arrowInfo{
-    font-size: 18px;
+.arrowInfo {
+  font-size: 17px;
 }
 
-.fa{
-    position: relative;
-    z-index: 15;
-    top: 50%;
+.fa {
+  position: relative;
+  z-index: 15;
+  top: 50%;
 }
-.fa-angle-double-right{
-    position: relative;
-    z-index: 15;
-    top: 50%;
+.fa-angle-double-right {
+  position: relative;
+  z-index: 15;
+  top: 50%;
 }
-
 
 .dropDown {
-    font-size: 15px;
-    min-height: auto !important;
-    height: 1em;
-    display: inline-block;
-    width: 170px;
-    padding-right: 50px;
-    padding-bottom: 20px;
+  font-size: 13px;
+  min-height: auto !important;
+  height: 1em;
+  display: inline-block;
+  width: 170px;
+  padding-right: 50px;
+  padding-bottom: 20px;
 }
 
 .description__mapped__header {
-    font-size: 18px;
-    display: inline-block;
-    width: 200px;
-    padding-right: 50px;
+  font-size: 17px;
+  display: inline-block;
+  width: 200px;
+  padding-right: 50px;
 }
 
 .toolbar__date__format {
-    font-size: 15px;
-    display: inline-block;
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    border-style: solid;
-    border-color: rgb(224,225,226);
-    border-width: 1px;
-    border-radius: 5px;
-    margin-top: 9.1em;
-
+  border-style: solid;
+  border-color: rgb(224, 225, 226);
+  border-width: 1px;
+  border-radius: 5px;
+  max-width: 260px;
 }
 
-.arrowIcon { 
-    display: inline-block;
-    width: 70px;
-    padding-left: 25px;
+.arrowIcon {
+  display: inline-block;
+  width: 70px;
+  padding-left: 25px;
 }
 
 .arrowIcon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 
 .dropDownNoData {
-    font-size: 11px;
-    display: inline-block;
-    width: 200px;
-    padding-right: 50px;
-    padding-top: 15px;
-    text-align: center;
+  font-size: 11px;
+  display: inline-block;
+  width: 200px;
+  padding-right: 50px;
+  padding-top: 15px;
+  text-align: center;
 }
 
+.descriptionKeyMapped {
+  display: inline-block;
+  padding-right: 250px;
+  padding-left: 0px;
+  padding-top: 7px;
+}
 
 .descriptionMapped {
-    display: inline-block;
-    padding-right: 55px;
-    padding-left: 0px;
-    padding-top: 7px;
-    
+  display: inline-block;
+  padding-right: 55px;
+  padding-left: 0px;
+  padding-top: 7px;
 }
 
-
-
 .description__mapped__content {
-    padding-top: .5em;
-    display: inline-block;
-    padding-right: 10px;
-    color: rgb(99,99,102);
-    font-size: 18px;
-
+  position: relative;
+  padding-top: 0.5em;
+  display: inline-block;
+  padding-right: 10px;
+  color: rgb(99, 99, 102);
+  font-size: 17px;
 }
 
 .ui {
-    padding: 0px;
-    width: 100%;
-    display: inline-block;
+  padding: 0px;
+  width: 100%;
+  display: inline-block;
 }
-
 
 .description {
-    background-color: rgb(224,225,226);
-    padding: 0px;
-    width: 100%;
-    display: inline-block;
-    border-top: solid;
-    border-color: black;
-    border-width: 1px;
-    border-radius: 5px;
-
+  background-color: rgb(224, 225, 226);
+  padding: 0px;
+  width: 100%;
+  display: inline-block;
+  border-top: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 5px;
 }
 .labelInfo {
-    background-color: rgb(224,225,226);
-    width: 100%;
-    margin: 0px;
-    display: inline-block;
-    border-top: solid;
-    border-color: black;
-    border-width: 1px;
-    border-radius: 5px;
+  background-color: rgb(224, 225, 226);
+  width: 100%;
+  margin: 0px;
+  display: inline-block;
+  border-top: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 5px;
 }
 
 .check__box {
-    display: inline-block;
-    height: 100%;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin: 0px;
-    padding-left: 10px;
+  display: inline-block;
+  height: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  padding-left: 10px;
 }
 
 .description__checkbox {
-    display: inline-block;
-    height: 100%;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin: 0px;
-    padding-left: 10px;
-    font-size: 18px;
+  display: inline-block;
+  height: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  padding-left: 10px;
+  font-size: 17px;
 }
 
 .check__box > .inner--checkbox {
-    padding: 0px;
-    margin: 0px;
-    height: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 0px;
 }
-
 
 .fieldContainer1 {
-    border-style: solid;
-    border-width: .5px;
-    line-height: 32px;
-    background-color: #e9a9a9;
-    border-radius: 4px;
+  border-style: solid;
+  border-width: 0.5px;
+  line-height: 27px;
+  background-color: #e9a9a9;
+  border-radius: 4px;
 }
 
-
-.fieldContainer2 {
-    border-style: solid;
-    border-width: .5px;
-    line-height: 32px;
-    border-radius: 4px;
+.fieldContainerDisabled {
+  border-style: solid;
+  border-width: 0.5px;
+  line-height: 27px;
+  border-radius: 4px;
 }
 
-.fieldContainer3 {
-    border-style: solid;
-    border-width: .5px;
-    background-color: #fcb471;
-    line-height: 32px;
-    border-radius: 4px;
+.fieldContainerMetadataAdd {
+  border-style: solid;
+  border-width: 0.5px;
+  background-color: #fcb471;
+  line-height: 27px;
+  border-radius: 4px;
 }
 
-.fieldContainer4 {
-    border-style: solid;
-    border-width: .5px;
-    background-color: #fcfa71d2;
-    line-height: 32px;
+.fieldContainerMetadata {
+  border-style: solid;
+  border-width: 0.5px;
+  background-color: #fcfa71d2;
+  line-height: 27px;
 
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .rightArrowIcon {
-    display: inline-block;
-    width: 20px;
+  display: inline-block;
+  width: 20px;
 }
-
 
 .refreshButton {
-    display: inline-block;
-    margin: 0 auto;
+  display: inline-block;
+  margin: 0 auto;
 }
-
-
